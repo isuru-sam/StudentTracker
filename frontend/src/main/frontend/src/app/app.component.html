@@ -4,17 +4,25 @@
     <input class="new-student" placeholder="Student Name" autofocus="" [(ngModel)]="newStudent.name" (keyup.enter)="addStudent()">
   </header>
   <section class="main" *ngIf="students.length > 0">
+     <table>
     <ul class="student-list">
-      <li *ngFor="let student of students" >
+       <tr>
         <div class="view">         
-          <label>{{student.name}}</label>
-          <button class="destroy" (click)="removeStudent(student)" >Delete</button>
-           <button class="destroy" (click)="removeStudent(student)" >Update</button>
+       <li *ngFor="let student of students" >
+      
+           <td width="40%">  <label>{{student.name}}</label></td>
+              <td width="40%">  <input class="edit-student"  placeholder="Update Student Name" autofocus="" [(ngModel)]="student.name" ></td>
+          <td width="20%">  <button class="destroy" (click)="removeStudent(student)" >Delete</button></td>
+      
+                </li>
         </div>
-      </li>
+        </tr>
+  
     </ul>
+    </table>
   </section>
   <footer class="footer" *ngIf="students.length > 0">
     <span class="student-count"><strong>{{students.length}}</strong> {{students.length == 1 ? 'student' : 'students'}} registered</span>
+    <BR/>  <BR/>  <BR/> <button class="save" (click)="saveStudents()" >Save All</button>
   </footer>
 </section>

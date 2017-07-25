@@ -35,6 +35,8 @@ export class AppComponent {
   removeStudent(student) {
     this.studentDataService.deleteStudentById(student.id);
   }
+  
+ 
 
   get students() {
     return this.studentDataService.getAllStudents();

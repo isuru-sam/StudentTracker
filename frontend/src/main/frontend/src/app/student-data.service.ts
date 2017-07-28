@@ -51,7 +51,8 @@ students: Student[] = [];
   }
   
    setInitialStudents(istudents: Student[]): StudentDataService {
-   this.students= istudents;    
+   this.students= istudents;
+     this.lastId= istudents.length;   
      return this;
   }
   

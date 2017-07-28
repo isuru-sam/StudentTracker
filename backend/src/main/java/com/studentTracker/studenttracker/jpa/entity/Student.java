@@ -4,7 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.persistence.Version;
+import javax.transaction.TransactionScoped;
 
 @Entity
 public class Student {
@@ -15,6 +17,9 @@ public class Student {
 	@Column(name = "name")
 	private String name;
 
+	@Transient
+	private Long trackingId;
+	
 	@Version
 	private Integer version;
 
@@ -40,6 +45,14 @@ public class Student {
 
 	public void setVersion(Integer version) {
 		this.version = version;
+	}
+
+	public Long getTrackingId() {
+		return trackingId;
+	}
+
+	public void setTrackingId(Long trackingId) {
+		this.trackingId = trackingId;
 	}
 
 }

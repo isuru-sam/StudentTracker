@@ -31,7 +31,7 @@ studentRest: Student[] = [];
   private getAllItems(): void {
         this.studentDataService
             .getAllStudentsRest()
-            .subscribe((data:Student[]) => this.studentRest = data,
+            .subscribe((data:Student[]) => this.studentDataService.setInitialStudents(data),
                 error => console.log(error),
                 () => console.log('Get all Items complete'));
     }
@@ -59,7 +59,7 @@ studentRest: Student[] = [];
 
   get students() {
     console.log('Retuening students'+this.studentRest);
-    return this.studentRest;
+    return this.studentDataService.getAllStudents();
   }
   
 }

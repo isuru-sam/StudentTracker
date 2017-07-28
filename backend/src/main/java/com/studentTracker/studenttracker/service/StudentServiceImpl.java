@@ -18,7 +18,14 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	@Transactional
 	public List<Student> findAllStudents() {
-		return studentRepository.findAll();
+		List<Student> students = studentRepository.findAll();
+		long counter = 1;
+		for (Student student : students) {
+			student.setTrackingId(counter++);
+		}
+
+		return students;
+
 	}
 
 	@Override
@@ -39,7 +46,7 @@ public class StudentServiceImpl implements StudentService {
 	public void deleteAllAndInsert(List<Student> students) {
 		deleteAll();
 		insertAllStudents(students);
-		
+
 	}
 
 }

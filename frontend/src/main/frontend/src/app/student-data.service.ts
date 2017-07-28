@@ -12,10 +12,8 @@ export class StudentDataService {
  // Placeholder for last id so we can simulate
   // automatic incrementing of id's
   lastId: number = 0;
-students: Student[] = [];
+students: Student[] = []; 
   
-  // Placeholder for Student's
- // students: Observable<Student[]>= Rx.Observable.empty();
    private baseUrl: string = 'http://localhost:8080/api/students/';
   constructor(private http : Http){
   }
@@ -50,6 +48,11 @@ students: Student[] = [];
   // Simulate GET /students
   getAllStudents(): Student[] {
     return this.students;
+  }
+  
+   setInitialStudents(istudents: Student[]): StudentDataService {
+   this.students= istudents;    
+     return this;
   }
   
   
@@ -87,11 +90,11 @@ private getHeaders(){
 
 function toStudent(r:any): Student{
   let student = <Student>({
-    id: r.id,
-   
+    dbId: r.id,   
     name: r.name,
+    id:r.trackingId
    });
-  console.log('Parsed person:', student);
+  console.log('Parsed student:', student);
   return student;
 }
 

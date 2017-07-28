@@ -6,9 +6,6 @@ import {Student} from './student';
 
 import { FormsModule } from '@angular/forms';
 
-
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,14 +14,17 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'app';
-   newStudent: Student = new Student();
-studentRest: Student[] = [];
+  newStudent: Student = new Student();
+  saved: boolean = false;
+  studentRest: Student[] = [];
+  
   constructor(private studentDataService: StudentDataService) {
   }
   
   
   
    ngOnInit(){
+      this.saved = false;   
       this.getAllItems();
     }
 
@@ -37,28 +37,32 @@ studentRest: Student[] = [];
     }
   
   
-    ngOnDestroy(){
-      //  this.sub.unsubscribe();
+  
+  saveStudentDetails() {
+      this.studentDataService
+          .save()
+          .subscribe(r => console.log('saved!!! '));
+    this.saved= true;
     }
   
+    ngOnDestroy(){
+     
+    }
   
- 
-  
-   addStudent() {
+   addStudent() {     
+   this.saved = false;
     this.studentDataService.addStudent(this.newStudent);
     this.newStudent = new Student();
-  }
-
-  
+  }  
 
   removeStudent(student) {
+     this.saved = false;
     this.studentDataService.deleteStudentById(student.id);
   }
   
- 
 
   get students() {
-    console.log('Retuening students'+this.studentRest);
+    console.log('Returning students');
     return this.studentDataService.getAllStudents();
   }
   

@@ -15,7 +15,7 @@ export class StudentDataService {
 students: Student[] = []; 
   
    private baseUrl: string = 'http://localhost:8080/api/students/';
-  constructor(private http : Http){
+   constructor(private http : Http){
   }
 
   
@@ -52,7 +52,7 @@ students: Student[] = [];
   
    setInitialStudents(istudents: Student[]): StudentDataService {
    this.students= istudents;
-     this.lastId= istudents.length;   
+   this.lastId= istudents.length;   
      return this;
   }
   
@@ -70,6 +70,7 @@ private getHeaders(){
     // will request text/html instead of application/json
     let headers = new Headers();
     headers.append('Accept', 'application/json');
+   headers.append('Content-Type', 'application/json');
     return headers;
   }
   // Simulate GET /getStudent/:id
@@ -79,13 +80,21 @@ private getHeaders(){
       .pop();
   }
   
+  
+  
+  save() : Observable<Response>{    
+    return this
+      .http
+      .post(this.baseUrl,
+            JSON.stringify(this.students),
+            {headers: this.getHeaders()});
+  }
+  
 }
   function mapStudents(response:Response): Student[]{
    // The response of the API has a results
    // property with the actual results
-    console.log(response);
-        console.log(response.json());
-    console.log(response.json().results);
+    console.log(response);   
    return response.json().map(toStudent);
 }
 

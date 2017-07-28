@@ -23,7 +23,7 @@ public class StudentRestApiController {
 	@Autowired
 	StudentService studentService;
 
-	@RequestMapping(value = "/students/", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/students/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Student>> listAllStudents() {
 		List<Student> students = studentService.findAllStudents();
 		logger.info("Retrieving students" + students);
@@ -34,11 +34,11 @@ public class StudentRestApiController {
 		return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/students/", method = RequestMethod.POST)
+	@RequestMapping(value = "/students/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> createStudents(@RequestBody List<Student> students) {
 		logger.info("Creating Students :" + students);
 		studentService.deleteAllAndInsert(students);
-		
+
 		return listAllStudents();
 	}
 

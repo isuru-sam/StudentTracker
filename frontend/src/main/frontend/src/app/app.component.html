@@ -23,6 +23,8 @@
   </section>
   <footer class="footer" *ngIf="students.length > 0">
     <span class="student-count"><strong>{{students.length}}</strong> {{students.length == 1 ? 'student' : 'students'}} registered</span>
-    <BR/>  <BR/>  <BR/> <button class="save" (click)="saveStudents()" >Save All</button>
+    <BR/>  <BR/>  <BR/> <button class="save" (click)="saveStudentDetails()" >Save All</button>
+    
+    <div *ngIf="saved"> Students Saved in the database. </div>
   </footer>
 </section>

@@ -1,16 +1,24 @@
 import { Injectable } from '@angular/core';
 import {Student} from './student';
+
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
 @Injectable()
 export class StudentDataService {
 
  // Placeholder for last id so we can simulate
   // automatic incrementing of id's
   lastId: number = 0;
-
-  // Placeholder for Student's
-  students: Student[] = [];
+students: Student[] = [];
   
-  constructor() { }
+  // Placeholder for Student's
+ // students: Observable<Student[]>= Rx.Observable.empty();
+   private baseUrl: string = 'http://localhost:8080/api/students/';
+  constructor(private http : Http){
+  }
 
   
     // Simulate POST /addStudent
@@ -43,7 +51,23 @@ export class StudentDataService {
   getAllStudents(): Student[] {
     return this.students;
   }
-
+  
+  
+  getAllStudentsRest(): Observable<Student[]> {
+    let student$ = this.http
+      .get(this.baseUrl, {headers: this.getHeaders()})
+      .map(mapStudents);
+   // this.students = student$;
+      return student$;
+  }
+  
+private getHeaders(){
+    // I included these headers because otherwise FireFox
+    // will request text/html instead of application/json
+    let headers = new Headers();
+    headers.append('Accept', 'application/json');
+    return headers;
+  }
   // Simulate GET /getStudent/:id
   getStudentById(id: number): Student {
     return this.students
@@ -51,12 +75,23 @@ export class StudentDataService {
       .pop();
   }
   
-  // Toggle todo complete
-  toggleStudentFullTime(student: Student){
-    let updatedStudent = this.updateStudentById(student.id, {
-      fullTime: !student.fullTime
-    });
-    return updatedStudent;
-  }
-
 }
+  function mapStudents(response:Response): Student[]{
+   // The response of the API has a results
+   // property with the actual results
+    console.log(response);
+        console.log(response.json());
+    console.log(response.json().results);
+   return response.json().map(toStudent);
+}
+
+function toStudent(r:any): Student{
+  let student = <Student>({
+    id: r.id,
+   
+    name: r.name,
+   });
+  console.log('Parsed person:', student);
+  return student;
+}
+

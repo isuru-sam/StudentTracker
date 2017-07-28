@@ -35,6 +35,7 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteAllAndInsert(List<Student> students) {
 		deleteAll();
 		insertAllStudents(students);

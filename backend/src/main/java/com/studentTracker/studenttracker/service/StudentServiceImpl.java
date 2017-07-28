@@ -34,4 +34,11 @@ public class StudentServiceImpl implements StudentService {
 
 	}
 
+	@Override
+	public void deleteAllAndInsert(List<Student> students) {
+		deleteAll();
+		insertAllStudents(students);
+		
+	}
+
 }

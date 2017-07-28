@@ -11,5 +11,7 @@ public interface StudentService {
 	void deleteAll();
 
 	void insertAllStudents(List<Student> students);
+	
+	void deleteAllAndInsert(List<Student> students);
 
 }

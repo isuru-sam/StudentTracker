@@ -37,8 +37,8 @@ public class StudentRestApiController {
 	@RequestMapping(value = "/students/", method = RequestMethod.POST)
 	public ResponseEntity<?> createStudents(@RequestBody List<Student> students) {
 		logger.info("Creating Students :" + students);
-		studentService.deleteAll();
-		studentService.insertAllStudents(students);
+		studentService.deleteAllAndInsert(students);
+		
 		return listAllStudents();
 	}
 

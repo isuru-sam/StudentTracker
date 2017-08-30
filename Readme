@@ -27,7 +27,7 @@ Front end UI
 4.Delete button removes a student from the model 
 5.SaveAll button will call the Rest API and save data to the database
 
-Rest apis can be accessed seperately 
+Rest apis can be accessed separately 
 1.http://localhost:8080/api/students (List all students in json format)
 
 For any questions contact iisuru@gmail.com

@@ -14,7 +14,7 @@ export class StudentDataService {
   lastId: number = 0;
 students: Student[] = []; 
   
-   private baseUrl: string = 'http://localhost:8080/api/students/';
+   private baseUrl: string = 'http://isuru.ap-southeast-1.elasticbeanstalk.com/api/students/';
    constructor(private http : Http){
   }
 

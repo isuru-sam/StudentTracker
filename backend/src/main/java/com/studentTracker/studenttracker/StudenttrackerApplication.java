@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-//@SpringBootApplication
+//@SpringBootApplication 
 @EnableJpaRepositories("com.studentTracker.studenttracker.jpa.repository")
 @PropertySource("classpath:application.properties")
 public class StudenttrackerApplication {

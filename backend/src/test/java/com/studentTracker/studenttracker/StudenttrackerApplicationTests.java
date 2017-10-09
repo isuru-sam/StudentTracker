@@ -23,6 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 
 public class StudenttrackerApplicationTests {
+	
 
 	@Test
 	public void contextLoads() {

@@ -3,3 +3,10 @@ https://blog.jdriven.com/2016/12/angular2-spring-boot-getting-started/
 https://www.cardinalsolutions.com/blog/2014/07/continuous_integrati
 http://tvivu.com/continuous-integration-angularjs-jenkins/
 https://aws.amazon.com/blogs/devops/building-continuous-deployment-on-aws-with-aws-codepipeline-jenkins-and-aws-elastic-beanstalk/
+
+sudo fallocate -l 1G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+
+free -m

@@ -13,3 +13,4 @@ public class StudenttrackerApplication {
 		SpringApplication.run(StudenttrackerApplication.class, args);
 	}
 }
+ 
